@@ -1,0 +1,112 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.antfortune.freeline'
+
+def dir = System.getProperty("user.dir");
+
+def releaseTime() {
+    return new Date().format("yyyy-MM-dd", TimeZone.getTimeZone("UTC"))
+}
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion '23.0.3'
+
+    defaultConfig {
+        applicationId "com.dong"
+        minSdkVersion 17
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+
+        // dex突破65535的限制
+        multiDexEnabled true
+    }
+    buildTypes {
+
+        debug {
+            // 显示Log
+            buildConfigField "boolean", "LOG_DEBUG", "true"
+
+            versionNameSuffix "-debug"
+            minifyEnabled false
+            zipAlignEnabled false
+            // true 移除无用的resource文件
+            //shrinkResources false
+            signingConfig signingConfigs.debug
+        }
+
+        release {
+            // 显示Log
+            buildConfigField "boolean", "LOG_DEBUG", "false"
+
+            minifyEnabled true
+            zipAlignEnabled true
+            // 移除无用的resource文件
+            //shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            applicationVariants.all { variant ->
+                variant.outputs.each { output ->
+                    def outputFile = output.outputFile
+                    if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                        //例如: 输出apk名称为WD_v1.0_2016-09-15_wandoujia.apk
+                        def fileName = "WD_v${defaultConfig.versionName}_${releaseTime()}_${variant.productFlavors[0].name}.apk"
+                        //output.outputFile = new File(outputFile.parent, fileName)
+                        variant.outputs[0].outputFile = new File(dir + "/ExportApks", fileName);
+                    }
+                }
+            }
+        }
+    }
+
+    // 友盟多渠道打包
+    productFlavors {
+        wdtest {}
+        /*xiaomi {}
+        _360 {}
+        baidu {}
+        wandoujia {}*/
+    }
+
+    productFlavors.all { flavor ->
+        flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
+    }
+
+    signingConfigs {
+        debug {
+            // No debug config
+        }
+
+        release {
+            storeFile file("../yourapp.keystore")
+            storePassword "your password"
+            keyAlias "your alias"
+            keyPassword "your password"
+        }
+    }
+
+    def flavor = "wdtest"
+
+    freeline{
+        hack true
+        productFlavor flavor
+        def fileName = "WD_v${defaultConfig.versionName}_${releaseTime()}_" + flavor + ".apk"
+        apkPath dir + "/ExportApks/" + fileName
+    }
+
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile project(':bluetooth')
+    compile 'com.android.support:appcompat-v7:23.4.0'
+    compile 'com.android.support:design:23.4.0'
+    compile 'com.android.support:support-v4:23.4.0'
+    compile 'com.android.support:recyclerview-v7:23.4.0'
+    compile 'com.android.support:cardview-v7:23.4.0'
+    compile 'com.google.android:flexbox:0.1.2'
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+
+    //freeline
+    compile 'com.antfortune.freeline:runtime:0.7.2'
+}

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.dong">
+
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:name=".app.WDApplication"
+        android:theme="@style/AppTheme">
+
+        <activity
+            android:name=".activity.StartActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.Start">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activity.HomeActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.TestActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.FirstActivity" android:theme="@style/ThemeSwipeBack" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.DetailActivity" android:theme="@style/ThemeSwipeBack" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.RefreshActivity" android:theme="@style/ThemeSwipeBack" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.TerminalActivity" android:theme="@style/ThemeSwipeBack" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.MetroActivity" android:theme="@style/ThemeSwipeBack" android:screenOrientation="portrait"/>
+
+        <service android:name=".service.WindowService"/>
+
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="${UMENG_CHANNEL_VALUE}" />
+    </application>
+
+</manifest>
