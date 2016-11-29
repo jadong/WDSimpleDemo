@@ -77,10 +77,10 @@ public class DynamicView extends SurfaceView implements
         return bitmap;
     }
 
-    public Bitmap[][] generateBitmapArray(Context context, int resourseId,
+    public Bitmap[][] generateBitmapArray(Context context, int resourcesId,
                                           int row, int col) {
         Bitmap bitmaps[][] = new Bitmap[row][col];
-        Bitmap source = decodeBitmapFromRes(context, resourseId);
+        Bitmap source = decodeBitmapFromRes(context, resourcesId);
         this.spriteWidth = source.getWidth() / col;
         this.spriteHeight = source.getHeight() / row;
         for (int i = 1; i <= row; i++) {

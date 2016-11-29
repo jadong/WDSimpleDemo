@@ -67,8 +67,8 @@ public class HomeActivity extends AppCompatActivity {
 
                     float leftScale = 1 - 0.3f * scale;
 
-                    //ViewHelper.setScaleX(mMenu, leftScale);
-                    //ViewHelper.setScaleY(mMenu, leftScale);
+                    ViewHelper.setScaleX(mMenu, leftScale);
+                    ViewHelper.setScaleY(mMenu, leftScale);
                     ViewHelper.setAlpha(mMenu, 0.6f + 0.4f * (1 - scale));
                     ViewHelper.setTranslationX(mContent, mMenu.getMeasuredWidth() * (1 - scale));
                     ViewHelper.setPivotX(mContent, 0);
@@ -77,15 +77,6 @@ public class HomeActivity extends AppCompatActivity {
                     ViewHelper.setScaleX(mContent, rightScale);
                     ViewHelper.setScaleY(mContent, rightScale);
 
-                    ObjectAnimator.ofFloat(mMenu, "scaleX", leftScale);
-                    ObjectAnimator.ofFloat(mMenu, "scaleY", leftScale);
-                    /*ObjectAnimator.ofFloat(mMenu, "alpha", 0.6f + 0.4f * (1 - scale));
-                    ObjectAnimator.ofFloat(mContent, "translationX", mMenu.getMeasuredWidth() * (1 - scale));
-                    ObjectAnimator.ofFloat(mContent, "pivotX", 0);
-                    ObjectAnimator.ofFloat(mContent, "pivotY", mContent.getMeasuredHeight() / 2);
-                    mContent.invalidate();
-                    ObjectAnimator.ofFloat(mContent, "scaleX", rightScale);
-                    ObjectAnimator.ofFloat(mContent, "scaleY", rightScale);*/
 
                 } else {
                     ViewHelper.setTranslationX(mContent, -mMenu.getMeasuredWidth() * slideOffset);
@@ -95,12 +86,6 @@ public class HomeActivity extends AppCompatActivity {
                     ViewHelper.setScaleX(mContent, rightScale);
                     ViewHelper.setScaleY(mContent, rightScale);
 
-                    /*ObjectAnimator.ofFloat(mContent, "translationX", -mMenu.getMeasuredWidth() * slideOffset);
-                    ObjectAnimator.ofFloat(mContent, "pivotX", mContent.getMeasuredWidth());
-                    ObjectAnimator.ofFloat(mContent, "pivotY", mContent.getMeasuredHeight() / 2);
-                    mContent.invalidate();
-                    ObjectAnimator.ofFloat(mContent, "scaleX", rightScale);
-                    ObjectAnimator.ofFloat(mContent, "scaleY", rightScale);*/
                 }
 
             }
