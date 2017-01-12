@@ -37,10 +37,19 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
     </style>
 
+    <style name="AppTitle" parent="@android:style/TextAppearance">
+
+        <item name="android:textColor">#fff</item>
+        <item name="android:textSize">40dp</item>
+
+    </style>
+
+
     <style name="Theme.Swipe.Back" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="windowActionBar">false</item>
         <item name="android:windowNoTitle">true</item>
     </style>
+
 </resources>

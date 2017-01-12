@@ -13,7 +13,6 @@ import com.dong.R;
 import com.dong.base.BaseActivity;
 import com.dong.style.TagImageSpan;
 import com.dong.util.AppUtils;
-import com.google.android.flexbox.FlexboxLayout;
 
 import java.util.Random;
 
@@ -22,8 +21,6 @@ import java.util.Random;
  */
 public class DetailActivity extends BaseActivity {
 
-    private FlexboxLayout fl_tags;
-    private TextView tv_tab;
     private TextView tv_cursor;
     private int currIndex = 0;
     private int position = 0;
@@ -39,8 +36,6 @@ public class DetailActivity extends BaseActivity {
 
     @Override
     protected void onCreate() {
-        fl_tags = (FlexboxLayout) findViewById(R.id.fl_tags);
-        tv_tab = (TextView) findViewById(R.id.tv_tab);
         tv_cursor = (TextView) findViewById(R.id.tv_cursor);
         iv_image = (ImageView) findViewById(R.id.iv_image);
         tv_text = (TextView) findViewById(R.id.tv_text);

@@ -8,30 +8,6 @@
 
     <include layout="@layout/layout_toolbar" />
 
-    <com.google.android.flexbox.FlexboxLayout
-        android:id="@+id/fl_tags"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="50dp"
-        app:flexDirection="row"
-        app:flexWrap="wrap">
-
-        <TextView
-            android:id="@+id/tv_tab"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_margin="4dp"
-            android:background="@drawable/corner_bg"
-            android:gravity="center"
-            android:paddingLeft="8dp"
-            android:paddingRight="8dp"
-            android:text="AAAAAA"
-            android:textSize="16sp" />
-
-    </com.google.android.flexbox.FlexboxLayout>
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"

@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.dong.R;
+import com.dong.activity.CoordinatorActivity;
 import com.dong.activity.DetailActivity;
 import com.dong.activity.FirstActivity;
 import com.dong.activity.MetroActivity;
@@ -58,6 +59,7 @@ public class MainLeftFragment extends Fragment {
         list.add(new ActivityName("TestActivity", TestActivity.class));
         list.add(new ActivityName("TerminalActivity", TerminalActivity.class));
         list.add(new ActivityName("MetroActivity", MetroActivity.class));
+        list.add(new ActivityName("CoordinatorActivity", CoordinatorActivity.class));
 
         lv.setAdapter(new ActivityNameAdapter(getActivity(),list));
     }

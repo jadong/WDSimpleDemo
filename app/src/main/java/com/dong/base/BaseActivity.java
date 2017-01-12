@@ -35,8 +35,9 @@ public abstract class BaseActivity extends SwipeBackActivity {
 
     }
 
-    protected abstract void onCreate();
-
     @LayoutRes
     protected abstract int getContentView();
+
+    protected abstract void onCreate();
+
 }
