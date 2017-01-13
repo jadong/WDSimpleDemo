@@ -32,6 +32,13 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
+ *
+ * layout_scrollFlags 設置:
+ * scroll - 想滚动就必须设置这个。
+ enterAlways - 实现quick return效果, 当向下移动时，立即显示View（比如Toolbar)。
+ exitUntilCollapsed - 向上滚动时收缩View，但可以固定Toolbar一直在上面。
+ enterAlwaysCollapsed - 当你的View已经设置minHeight属性又使用此标志时，你的View只能以最小高度进入，只有当滚动视图到达顶部时才扩大到完整高度
+
  * Created by zengwendong on 16/12/13.
  */
 public class CoordinatorActivity extends BaseActivity{
@@ -42,7 +49,7 @@ public class CoordinatorActivity extends BaseActivity{
 
     private CommonNavigator commonNavigator;
 
-    private static final String[] CHANNELS = new String[]{"石磊", "狄仁杰", "夏候惇","橘右京"};
+    private static final String[] CHANNELS = new String[]{"不知火舞", "狄仁杰", "夏候惇","橘右京"};
     private List<String> dataList = new ArrayList<>(Arrays.asList(CHANNELS));
     private ExampleFragmentAdapter exampleFragmentAdapter;
 
@@ -110,8 +117,9 @@ public class CoordinatorActivity extends BaseActivity{
 
             @Override
             public IPagerTitleView getTitleView(Context context, final int index) {
-                SimplePagerTitleView simplePagerTitleView = new ScaleTransitionPagerTitleView(context);
+                ScaleTransitionPagerTitleView simplePagerTitleView = new ScaleTransitionPagerTitleView(context);
                 simplePagerTitleView.setText(dataList.get(index));
+                simplePagerTitleView.setMinScale(0.8f);
                 simplePagerTitleView.setTextSize(18);
                 simplePagerTitleView.setNormalColor(Color.parseColor("#616161"));
                 simplePagerTitleView.setSelectedColor(Color.parseColor("#f57c00"));
@@ -154,7 +162,7 @@ public class CoordinatorActivity extends BaseActivity{
     protected void onPostCreate(@Nullable Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         if (toolbar != null) {
-            toolbar.setNavigationIcon(R.mipmap.ic_back);
+            toolbar.setNavigationIcon(R.mipmap.icon_back);
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

@@ -34,7 +34,7 @@
         <activity android:name=".activity.RefreshActivity" android:theme="@style/ThemeSwipeBack" android:screenOrientation="portrait"/>
         <activity android:name=".activity.TerminalActivity" android:theme="@style/ThemeSwipeBack" android:screenOrientation="portrait"/>
         <activity android:name=".activity.MetroActivity" android:theme="@style/ThemeSwipeBack" android:screenOrientation="portrait"/>
-        <activity android:name=".activity.CoordinatorActivity" android:theme="@style/ThemeSwipeBack" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.CoordinatorActivity" android:theme="@style/ThemeFirstSwipeBack" android:screenOrientation="portrait"/>
 
         <service android:name=".service.WindowService"/>
 

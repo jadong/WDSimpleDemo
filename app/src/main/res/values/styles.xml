@@ -12,7 +12,7 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="AppTheme.Start" parent = "AppTheme">
+    <style name="AppTheme.Start" parent="AppTheme">
         <item name="android:windowBackground">@color/transparent</item>
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowIsTranslucent">true</item>
@@ -23,7 +23,8 @@
     </style>
 
     <!-- Toolbar popup主题 -->
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light">
+    </style>
     <!-- RefreshActivity 主题 -->
     <style name="RefreshActivityTheme" parent="AppTheme">
 
@@ -37,10 +38,17 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
     </style>
 
+    <style name="ThemeFirstSwipeBack" parent="Theme.Swipe.Back">
+        <!-- toolbar（actionbar）颜色 -->
+        <item name="colorPrimary">@color/white</item>
+        <!-- 状态栏颜色 -->
+        <item name="colorPrimaryDark">@color/transparent</item>
+    </style>
+
     <style name="AppTitle" parent="@android:style/TextAppearance">
 
         <item name="android:textColor">#fff</item>
-        <item name="android:textSize">40dp</item>
+        <item name="android:textSize">25sp</item>
 
     </style>
 
