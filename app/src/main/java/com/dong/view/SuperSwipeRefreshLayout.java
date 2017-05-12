@@ -55,7 +55,7 @@ import android.widget.ScrollView;
 @SuppressLint("ClickableViewAccessibility")
 public class SuperSwipeRefreshLayout extends ViewGroup {
     private static final String LOG_TAG = "SuperSwipeRefreshLayout";
-    private static final int HEADER_VIEW_HEIGHT = 150;// HeaderView height (dp) 头布局高度
+    private static final int HEADER_VIEW_HEIGHT = 50;// HeaderView height (dp) 头布局高度
 
     private static final float DECELERATE_INTERPOLATION_FACTOR = 2f;
     private static final int INVALID_POINTER = -1;
@@ -64,7 +64,7 @@ public class SuperSwipeRefreshLayout extends ViewGroup {
     private static final int SCALE_DOWN_DURATION = 150;
     private static final int ANIMATE_TO_TRIGGER_DURATION = 200;
     private static final int ANIMATE_TO_START_DURATION = 200;
-    private static final int DEFAULT_CIRCLE_TARGET = 164;//下拉时的计算高度
+    private static final int DEFAULT_CIRCLE_TARGET = 50;//下拉时的计算高度
 
     // SuperSwipeRefreshLayout内的目标View，比如RecyclerView,ListView,ScrollView,GridView
     // etc.
@@ -205,9 +205,9 @@ public class SuperSwipeRefreshLayout extends ViewGroup {
         }
         usingDefaultHeader = false;
         mHeadViewContainer.removeAllViews();
-       // RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(mHeaderViewWidth, mHeaderViewHeight);
-        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(
-                RelativeLayout.LayoutParams.MATCH_PARENT,  RelativeLayout.LayoutParams.WRAP_CONTENT);
+        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(mHeaderViewWidth, mHeaderViewHeight);
+        /*RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(
+                RelativeLayout.LayoutParams.MATCH_PARENT,  RelativeLayout.LayoutParams.WRAP_CONTENT);*/
         layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
         mHeadViewContainer.addView(child, layoutParams);
     }

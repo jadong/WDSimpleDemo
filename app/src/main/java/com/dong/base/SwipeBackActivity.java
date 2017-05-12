@@ -1,5 +1,6 @@
 package com.dong.base;
 
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -14,7 +15,7 @@ import com.dong.R;
 /**
  * Created by Eric on 15/3/3.
  */
-public class SwipeBackActivity extends AppCompatActivity implements SwipeBackLayout.SwipeBackListener {
+public class SwipeBackActivity extends FragmentActivity implements SwipeBackLayout.SwipeBackListener {
 
     private SwipeBackLayout swipeBackLayout;
     private ImageView ivShadow;//渐变背景色
@@ -23,7 +24,7 @@ public class SwipeBackActivity extends AppCompatActivity implements SwipeBackLay
 
     @Override
     public void setContentView(int layoutResID) {
-        if (isEnableSwipeBack) {
+        if (isEnableSwipeBack()) {
             super.setContentView(getContainer());
             View view = LayoutInflater.from(this).inflate(layoutResID, null);
             swipeBackLayout.addView(view);
@@ -46,12 +47,18 @@ public class SwipeBackActivity extends AppCompatActivity implements SwipeBackLay
         return container;
     }
 
+    public boolean isEnableSwipeBack() {
+        return isEnableSwipeBack;
+    }
+
     public void setEnableSwipeBack(boolean enableSwipeBack) {
         isEnableSwipeBack = enableSwipeBack;
     }
 
     public void setDragEdge(SwipeBackLayout.DragEdge dragEdge) {
-        swipeBackLayout.setDragEdge(dragEdge);
+        if (swipeBackLayout != null) {
+            swipeBackLayout.setDragEdge(dragEdge);
+        }
     }
 
     public SwipeBackLayout getSwipeBackLayout() {

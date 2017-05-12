@@ -3,45 +3,41 @@ package com.dong.behavior;
 import android.content.Context;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.view.ViewCompat;
+import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 /**
  * Created by zengwendong on 16/12/13.
  */
-public class ScrollBehavior extends CoordinatorLayout.Behavior<View> {
+public class ScrollBehavior extends CoordinatorLayout.Behavior<TextView> {
 
     public ScrollBehavior(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
+    /**
+     * 确定所监听的视图
+     */
     @Override
-    public boolean onStartNestedScroll(CoordinatorLayout coordinatorLayout, View child, View directTargetChild, View target, int nestedScrollAxes) {
-        return (nestedScrollAxes & ViewCompat.SCROLL_AXIS_VERTICAL) != 0;
+    public boolean layoutDependsOn(CoordinatorLayout parent, TextView child, View dependency) {
+        Log.i("ScrollBehavior", "layoutDependsOn: "+dependency);
+        return dependency instanceof RecyclerView;
     }
 
+    /**
+     * 被观察View变化的时候回调用的方法
+     */
     @Override
-    public void onNestedPreScroll(CoordinatorLayout coordinatorLayout, View child, View target, int dx, int dy, int[] consumed) {
-        super.onNestedPreScroll(coordinatorLayout, child, target, dx, dy, consumed);
-        int leftScrolled = target.getScrollY();
-        child.setScrollY(leftScrolled);
-    }
-
-    @Override
-    public boolean onNestedPreFling(CoordinatorLayout coordinatorLayout, View child, View target, float velocityX, float velocityY) {
-        return true;
-    }
-
-    @Override
-    public boolean layoutDependsOn(CoordinatorLayout parent, View child, View dependency) {
-        return dependency instanceof ImageView;
-    }
-
-    @Override
-    public boolean onDependentViewChanged(CoordinatorLayout parent, View child, View dependency) {
-        int offset = dependency.getTop();
+    public boolean onDependentViewChanged(CoordinatorLayout parent, TextView child, View dependency) {
+        int offset = dependency.getScrollY();
         ViewCompat.offsetTopAndBottom(child, offset);
         return false;
     }
+
 }

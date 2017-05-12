@@ -17,6 +17,8 @@ public class ExampleFragmentAdapter extends FragmentPagerAdapter {
 
     private List<String> dataList = new ArrayList<>();
 
+    private List<Fragment> fragmentList = new ArrayList<>();
+
     public ExampleFragmentAdapter(FragmentManager fm, List<String> dataList) {
         super(fm);
         if (dataList != null) {
@@ -26,11 +28,19 @@ public class ExampleFragmentAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
+        Fragment fragment;
         if (position == dataList.size() - 1) {
-            return new WebViewFragment();
+            fragment = new WebViewFragment();
+
         } else {
-            return new FirstFragment();
+            fragment = new FirstFragment();
         }
+        fragmentList.add(fragment);
+        return fragment;
+    }
+
+    public List<Fragment> getFragmentList() {
+        return fragmentList;
     }
 
     @Override

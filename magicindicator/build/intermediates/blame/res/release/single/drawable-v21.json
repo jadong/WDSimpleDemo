@@ -1,15 +1,7 @@
 [
     {
-        "merged": "/Users/admin/AndroidStudioProjects/StarsMind/magicindicator/build/intermediates/res/merged/release/drawable-v21/abc_action_bar_item_background_material.xml",
-        "source": "/Users/admin/AndroidStudioProjects/StarsMind/magicindicator/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.4.0/res/drawable-v21/abc_action_bar_item_background_material.xml"
-    },
-    {
         "merged": "/Users/admin/AndroidStudioProjects/WDSimpleDemo/magicindicator/build/intermediates/res/merged/release/drawable-v21/abc_action_bar_item_background_material.xml",
         "source": "/Users/admin/AndroidStudioProjects/WDSimpleDemo/magicindicator/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.4.0/res/drawable-v21/abc_action_bar_item_background_material.xml"
-    },
-    {
-        "merged": "/Users/admin/AndroidStudioProjects/StarsMind/magicindicator/build/intermediates/res/merged/release/drawable-v21/abc_btn_colored_material.xml",
-        "source": "/Users/admin/AndroidStudioProjects/StarsMind/magicindicator/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.4.0/res/drawable-v21/abc_btn_colored_material.xml"
     },
     {
         "merged": "/Users/admin/AndroidStudioProjects/WDSimpleDemo/magicindicator/build/intermediates/res/merged/release/drawable-v21/abc_edit_text_material.xml",
@@ -18,9 +10,5 @@
     {
         "merged": "/Users/admin/AndroidStudioProjects/WDSimpleDemo/magicindicator/build/intermediates/res/merged/release/drawable-v21/abc_btn_colored_material.xml",
         "source": "/Users/admin/AndroidStudioProjects/WDSimpleDemo/magicindicator/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.4.0/res/drawable-v21/abc_btn_colored_material.xml"
-    },
-    {
-        "merged": "/Users/admin/AndroidStudioProjects/StarsMind/magicindicator/build/intermediates/res/merged/release/drawable-v21/abc_edit_text_material.xml",
-        "source": "/Users/admin/AndroidStudioProjects/StarsMind/magicindicator/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.4.0/res/drawable-v21/abc_edit_text_material.xml"
     }
 ]

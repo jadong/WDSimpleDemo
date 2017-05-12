@@ -22,7 +22,7 @@ public abstract class BaseActivity extends SwipeBackActivity {
         onCreate();
         if (toolbar != null) {
             toolbar = (Toolbar) findViewById(R.id.toolbar);
-            setSupportActionBar(toolbar);
+            //setSupportActionBar(toolbar);
             toolbar.setTitle("Metro");
             toolbar.setNavigationIcon(R.mipmap.ic_back);
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {

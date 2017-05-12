@@ -14,6 +14,7 @@ import com.dong.R;
 import com.dong.activity.CoordinatorActivity;
 import com.dong.activity.DetailActivity;
 import com.dong.activity.FirstActivity;
+import com.dong.activity.MessageActivity;
 import com.dong.activity.MetroActivity;
 import com.dong.activity.RefreshActivity;
 import com.dong.activity.TerminalActivity;
@@ -60,6 +61,7 @@ public class MainLeftFragment extends Fragment {
         list.add(new ActivityName("TerminalActivity", TerminalActivity.class));
         list.add(new ActivityName("MetroActivity", MetroActivity.class));
         list.add(new ActivityName("CoordinatorActivity", CoordinatorActivity.class));
+        list.add(new ActivityName("MessageActivity", MessageActivity.class));
 
         lv.setAdapter(new ActivityNameAdapter(getActivity(),list));
     }

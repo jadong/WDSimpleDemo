@@ -2,19 +2,19 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.dong">
 
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 
     <application
+        android:name=".app.WDApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:name=".app.WDApplication"
         android:theme="@style/AppTheme">
 
         <activity
@@ -27,20 +27,48 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.HomeActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".activity.TestActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".activity.FirstActivity" android:theme="@style/ThemeSwipeBack" android:screenOrientation="portrait"/>
-        <activity android:name=".activity.DetailActivity" android:theme="@style/ThemeSwipeBack" android:screenOrientation="portrait"/>
-        <activity android:name=".activity.RefreshActivity" android:theme="@style/ThemeSwipeBack" android:screenOrientation="portrait"/>
-        <activity android:name=".activity.TerminalActivity" android:theme="@style/ThemeSwipeBack" android:screenOrientation="portrait"/>
-        <activity android:name=".activity.MetroActivity" android:theme="@style/ThemeSwipeBack" android:screenOrientation="portrait"/>
-        <activity android:name=".activity.CoordinatorActivity" android:theme="@style/ThemeFirstSwipeBack" android:screenOrientation="portrait"/>
+        <activity
+            android:name=".activity.HomeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.TestActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.FirstActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeSwipeBack" />
+        <activity
+            android:name=".activity.DetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeSwipeBack" />
+        <activity
+            android:name=".activity.RefreshActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeSwipeBack" />
+        <activity
+            android:name=".activity.TerminalActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeSwipeBack" />
+        <activity
+            android:name=".activity.MetroActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeSwipeBack" />
+        <activity
+            android:name=".activity.MessageActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeSwipeBack" />
+        <activity
+            android:name=".activity.CoordinatorActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeFirstSwipeBack" />
 
-        <service android:name=".service.WindowService"/>
+        <service android:name=".service.WindowService" />
 
         <meta-data
             android:name="UMENG_CHANNEL"
             android:value="${UMENG_CHANNEL_VALUE}" />
+
+        <service android:name=".service.AssistService"></service>
     </application>
 
 </manifest>

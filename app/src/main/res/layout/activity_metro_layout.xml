@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="#F0F0F0"
     android:orientation="vertical">
 
     <include layout="@layout/layout_toolbar" />
@@ -10,7 +11,82 @@
     <com.dong.view.MetroLayout
         android:id="@+id/rl_metro_layout"
         android:layout_width="match_parent"
-        android:background="@color/white"
-        android:layout_height="match_parent" />
+        android:layout_height="200dp"
+        android:visibility="gone"
+        android:background="@color/white" />
+
+    <com.google.android.flexbox.FlexboxLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:flexDirection="row"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        app:flexWrap="wrap">
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="28dp"
+            android:background="#F5F5F5"
+            android:ellipsize="end"
+            android:layout_marginRight="8dp"
+            android:gravity="center"
+            android:text="BBBBBBBBBBBBBBBBBB"
+            app:layout_flexGrow="1" />
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="28dp"
+            android:background="#F5F5F5"
+            android:text="AAAAAAAA"
+            android:layout_marginRight="8dp"
+            app:layout_flexGrow="1" />
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="28dp"
+            android:layout_marginRight="8dp"
+            android:background="#F5F5F5"
+            android:text="AAAAAAAA"
+            app:layout_flexGrow="1" />
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="28dp"
+            android:background="#F5F5F5"
+            android:text="AAAAAAAA"
+            app:layout_flexGrow="1" />
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="28dp"
+            android:background="#F5F5F5"
+            android:text="AAAAAAAA"
+            app:layout_flexGrow="1" />
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="28dp"
+            android:background="#F5F5F5"
+            android:text="AAAAAAAA"
+            app:layout_flexGrow="1" />
+
+    </com.google.android.flexbox.FlexboxLayout>
+
+    <GridView
+        android:id="@+id/gridView"
+        android:numColumns="2"
+        android:background="#F5F5F5"
+        android:layout_marginTop="20dp"
+        android:horizontalSpacing="4dp"
+        android:verticalSpacing="4dp"
+        android:layout_width="match_parent"
+        android:layout_height="400dp">
+    </GridView>
+
+    <TextView
+        android:id="@+id/tv_test_text"
+        android:textSize="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

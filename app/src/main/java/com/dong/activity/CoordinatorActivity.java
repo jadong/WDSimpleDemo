@@ -10,11 +10,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.dong.R;
 import com.dong.adapter.ExampleFragmentAdapter;
 import com.dong.adapter.ScaleTransitionPagerTitleView;
 import com.dong.base.BaseActivity;
+import com.yalantis.phoenix.PullToRefreshView;
 
 import net.lucode.hackware.magicindicator.MagicIndicator;
 import net.lucode.hackware.magicindicator.ViewPagerHelper;
@@ -25,23 +28,21 @@ import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerInd
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerTitleView;
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.indicators.LinePagerIndicator;
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.ClipPagerTitleView;
-import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.SimplePagerTitleView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 /**
- *
  * layout_scrollFlags 設置:
  * scroll - 想滚动就必须设置这个。
- enterAlways - 实现quick return效果, 当向下移动时，立即显示View（比如Toolbar)。
- exitUntilCollapsed - 向上滚动时收缩View，但可以固定Toolbar一直在上面。
- enterAlwaysCollapsed - 当你的View已经设置minHeight属性又使用此标志时，你的View只能以最小高度进入，只有当滚动视图到达顶部时才扩大到完整高度
-
+ * enterAlways - 实现quick return效果, 当向下移动时，立即显示View（比如Toolbar)。
+ * exitUntilCollapsed - 向上滚动时收缩View，但可以固定Toolbar一直在上面。
+ * enterAlwaysCollapsed - 当你的View已经设置minHeight属性又使用此标志时，你的View只能以最小高度进入，只有当滚动视图到达顶部时才扩大到完整高度
+ * <p>
  * Created by zengwendong on 16/12/13.
  */
-public class CoordinatorActivity extends BaseActivity{
+public class CoordinatorActivity extends BaseActivity {
 
     private MagicIndicator magic_indicator;
     private ViewPager viewPager;
@@ -49,9 +50,16 @@ public class CoordinatorActivity extends BaseActivity{
 
     private CommonNavigator commonNavigator;
 
-    private static final String[] CHANNELS = new String[]{"不知火舞", "狄仁杰", "夏候惇","橘右京"};
+    private static final String[] CHANNELS = new String[]{"不知火舞", "狄仁杰", "夏候惇", "橘右京"};
     private List<String> dataList = new ArrayList<>(Arrays.asList(CHANNELS));
     private ExampleFragmentAdapter exampleFragmentAdapter;
+    private AppBarLayout appBarLayout;
+
+    //private SuperSwipeRefreshLayout swipeRefreshLayout;
+    private ProgressBar progressBar;
+    private TextView textView;
+
+    private PullToRefreshView pull_to_refresh;
 
     @Override
     protected int getContentView() {
@@ -60,16 +68,123 @@ public class CoordinatorActivity extends BaseActivity{
 
     @Override
     protected void onCreate() {
+
+        appBarLayout = (AppBarLayout) findViewById(R.id.appbar);
         magic_indicator = (MagicIndicator) findViewById(R.id.magic_indicator);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         viewPager = (ViewPager) findViewById(R.id.viewpager);
 
-        exampleFragmentAdapter = new ExampleFragmentAdapter(getSupportFragmentManager(),dataList);
+        exampleFragmentAdapter = new ExampleFragmentAdapter(getSupportFragmentManager(), dataList);
         viewPager.setAdapter(exampleFragmentAdapter);
         viewPager.setOffscreenPageLimit(dataList.size());
 
+        pull_to_refresh = (PullToRefreshView) findViewById(R.id.pull_to_refresh);
+        /*swipeRefreshLayout = (SuperSwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout);
+        swipeRefreshLayout.isTop(true);*/
+
         initMagicIndicatorSetting2();
+
+        setListener();
+
     }
+
+    private void setListener() {
+
+        pull_to_refresh = (PullToRefreshView) findViewById(R.id.pull_to_refresh);
+        pull_to_refresh.setOnRefreshListener(new PullToRefreshView.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                pull_to_refresh.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        pull_to_refresh.setRefreshing(false);
+                    }
+                }, 2000);
+            }
+        });
+
+        /*swipeRefreshLayout.setHeaderView(createHeaderView());// add headerView
+        swipeRefreshLayout.setTargetScrollWithLayout(true);
+        swipeRefreshLayout.setOnPullRefreshListener(new SuperSwipeRefreshLayout.OnPullRefreshListener() {
+
+            @Override
+            public void onRefresh() {
+                textView.setText("正在刷新");
+                progressBar.setVisibility(View.VISIBLE);
+                new Handler().postDelayed(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        swipeRefreshLayout.setRefreshing(false);
+                        progressBar.setVisibility(View.GONE);
+                    }
+                }, 2000);
+            }
+
+            @Override
+            public void onPullDistance(int distance) {
+                Log.i("CoordinatorActivity", "onPullDistance----" + distance);
+                float alpha = distance / AppUtils.dip2px(50);
+                alpha = alpha > 1 ? 1 : alpha < 0 ? 0 : alpha;
+                Log.i("CoordinatorActivity", "onPullDistance---alpha---" + alpha);
+                if (distance > 0) {
+                    toolbar.setAlpha(1 - alpha);
+                    //ObjectAnimator.ofFloat(toolbar,"alpha",0).setDuration(100).start();
+                } else {
+                    toolbar.setAlpha(1 - alpha);
+                    //ObjectAnimator.ofFloat(toolbar,"alpha",1).setDuration(100).start();
+                }
+            }
+
+            @Override
+            public void onPullEnable(boolean enable) {
+                textView.setText(enable ? "松开刷新" : "下拉刷新");
+            }
+        });*/
+
+        appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+
+                boolean enabled;
+                if (verticalOffset >= 0) {
+                    enabled = true;
+                } else {
+                    enabled = false;
+                }
+                pull_to_refresh.setEnabled(enabled);
+
+                /*List<Fragment> fragmentList = exampleFragmentAdapter.getFragmentList();
+                for (int i = 0; i < fragmentList.size(); i++) {
+                    Fragment fragment = fragmentList.get(i);
+                    if (fragment instanceof FirstFragment) {
+                        FirstFragment firstFragment = (FirstFragment) fragment;
+                        firstFragment.setRefreshStatus(isRefresh);
+                    }
+                }*/
+
+            }
+        });
+    }
+
+    /*private View createHeaderView() {
+        View headerView = LayoutInflater.from(swipeRefreshLayout.getContext())
+                .inflate(R.layout.layout_refresh_head_view, null);
+        progressBar = (ProgressBar) headerView.findViewById(R.id.progressBar);
+        textView = (TextView) headerView.findViewById(R.id.tv_text);
+        textView.setText("下拉刷新");
+        progressBar.setVisibility(View.GONE);
+        return headerView;
+    }*/
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus) {
+            //progressBarPopup.show(this);
+        }
+    }
+
 
     private void initMagicIndicatorSetting1() {
         commonNavigator = new CommonNavigator(this);

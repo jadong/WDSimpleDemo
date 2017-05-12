@@ -18,6 +18,7 @@
         <item name="android:windowIsTranslucent">true</item>
     </style>
 
+    <!-- Appbar 主题 -->
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
         <item name="android:textColorPrimary">#ffffff</item>
     </style>
