@@ -3,11 +3,20 @@
     package="com.dong">
 
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <permission android:name="android.permission.FLASHLIGHT"
+        android:permissionGroup="android.permission-group.HARDWARE_CONTROLS"
+        android:protectionLevel="normal" />
+
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+
+    <uses-permission android:name="android.permission.SET_WALLPAPER"/>
 
     <application
         android:name=".app.WDApplication"
@@ -58,6 +67,10 @@
             android:screenOrientation="portrait"
             android:theme="@style/ThemeSwipeBack" />
         <activity
+            android:name=".activity.TransparentActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeSwipeBack" />
+        <activity
             android:name=".activity.CoordinatorActivity"
             android:screenOrientation="portrait"
             android:theme="@style/ThemeFirstSwipeBack" />
@@ -68,7 +81,21 @@
             android:name="UMENG_CHANNEL"
             android:value="${UMENG_CHANNEL_VALUE}" />
 
-        <service android:name=".service.AssistService"></service>
+        <service android:name=".service.AssistService"/>
+
+        <!-- 配置实时壁纸Service -->
+        <service android:label="@string/app_name"
+            android:name=".service.TransparentWallpaper"
+            android:permission="android.permission.BIND_WALLPAPER">
+            <!-- 为实时壁纸配置intent-filter -->
+            <intent-filter>
+                <action  android:name="android.service.wallpaper.WallpaperService" />
+            </intent-filter>
+            <!-- 为实时壁纸配置meta-data -->
+            <meta-data android:name="android.service.wallpaper"
+                android:resource="@xml/livewallpaper" />
+        </service>
+
     </application>
 
 </manifest>
